@@ -10,407 +10,309 @@
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1a1f3a 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
-            color: #e2e8f0;
         }
-
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
         }
-
+        
         header {
             background: #0f172a;
-            border-bottom: 2px solid #4f46e5;
             padding: 24px;
+            border-radius: 12px;
             margin-bottom: 32px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            color: white;
         }
-
-        h1 {
+        
+        header h1 {
             font-size: 28px;
-            font-weight: 700;
             margin-bottom: 8px;
-            color: #fff;
+            font-weight: 700;
         }
-
-        .header-meta {
-            display: flex;
-            gap: 24px;
+        
+        header .subtitle {
             font-size: 14px;
-            color: #94a3b8;
+            color: #cbd5e1;
+            font-weight: 500;
         }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .meta-badge {
-            background: #4f46e5;
-            color: #fff;
+        
+        header .industry-badge {
+            display: inline-block;
+            background: #6366f1;
+            color: white;
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
+            margin-top: 12px;
         }
-
-        .content {
+        
+        .main-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 24px;
             margin-bottom: 32px;
         }
-
+        
         @media (max-width: 1024px) {
-            .content {
+            .main-grid {
                 grid-template-columns: 1fr;
             }
         }
-
+        
         .card {
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 8px;
+            background: white;
+            border-radius: 12px;
             padding: 24px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
-
+        
         .card h2 {
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 16px;
-            color: #e2e8f0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            color: #0f172a;
         }
-
-        .card-icon {
-            width: 24px;
-            height: 24px;
+        
+        .input-section {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
+            flex-direction: column;
         }
-
+        
         textarea {
             width: 100%;
-            min-height: 240px;
-            padding: 12px;
-            border: 1px solid #334155;
-            border-radius: 6px;
-            background: #0f172a;
-            color: #e2e8f0;
-            font-family: 'Monaco', 'Menlo', monospace;
+            min-height: 300px;
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Courier New', monospace;
             font-size: 13px;
+            line-height: 1.5;
             resize: vertical;
-            margin-bottom: 12px;
+            transition: border-color 0.2s;
         }
-
+        
         textarea:focus {
             outline: none;
-            border-color: #4f46e5;
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+            border-color: #6366f1;
         }
-
+        
         .button-group {
             display: flex;
-            gap: 8px;
+            gap: 12px;
+            margin-top: 16px;
             align-items: center;
         }
-
+        
         button {
-            padding: 10px 24px;
-            background: #4f46e5;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            border-radius: 6px;
+            padding: 12px 24px;
+            border-radius: 8px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-
+        
         button:hover:not(:disabled) {
-            background: #4338ca;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
         }
-
+        
         button:disabled {
             opacity: 0.6;
             cursor: not-allowed;
         }
-
-        .hint {
-            font-size: 12px;
-            color: #94a3b8;
-            font-style: italic;
-        }
-
-        .output-section {
-            grid-column: 1 / -1;
-        }
-
-        .violations-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .violation {
-            border-left: 4px solid;
-            padding: 16px;
-            border-radius: 6px;
-            background: rgba(15, 23, 42, 0.5);
-        }
-
-        .violation.critical {
-            border-left-color: #ef4444;
-            background: rgba(239, 68, 68, 0.1);
-        }
-
-        .violation.high {
-            border-left-color: #f97316;
-            background: rgba(249, 115, 22, 0.1);
-        }
-
-        .violation.medium {
-            border-left-color: #eab308;
-            background: rgba(234, 179, 8, 0.1);
-        }
-
-        .violation.low {
-            border-left-color: #3b82f6;
-            background: rgba(59, 130, 246, 0.1);
-        }
-
-        .severity-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .violation.critical .severity-badge {
-            background: #ef4444;
-            color: white;
-        }
-
-        .violation.high .severity-badge {
-            background: #f97316;
-            color: white;
-        }
-
-        .violation.medium .severity-badge {
-            background: #eab308;
+        
+        button.secondary {
+            background: #e2e8f0;
             color: #0f172a;
         }
-
-        .violation.low .severity-badge {
-            background: #3b82f6;
-            color: white;
+        
+        button.secondary:hover:not(:disabled) {
+            background: #cbd5e1;
         }
-
-        .violation h3 {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #e2e8f0;
-        }
-
-        .violation p {
-            font-size: 13px;
-            line-height: 1.6;
-            margin-bottom: 8px;
-            color: #cbd5e1;
-        }
-
-        .violation p:last-child {
-            margin-bottom: 0;
-        }
-
-        .corrective-actions {
-            background: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 24px;
-        }
-
-        .corrective-actions h3 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #e2e8f0;
-        }
-
-        .action-item {
-            padding: 12px;
-            background: rgba(79, 70, 229, 0.1);
-            border-left: 3px solid #4f46e5;
-            border-radius: 4px;
-            margin-bottom: 12px;
-            font-size: 13px;
-            line-height: 1.6;
-            color: #cbd5e1;
-        }
-
-        .action-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .summary {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .summary-card {
-            background: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 6px;
-            padding: 16px;
-            text-align: center;
-        }
-
-        .summary-value {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .summary-label {
+        
+        .try-hint {
             font-size: 12px;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            color: #64748b;
+            margin-top: 8px;
+            font-style: italic;
         }
-
-        .summary-card.critical .summary-value {
-            color: #ef4444;
+        
+        .output-section {
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
         }
-
-        .summary-card.high .summary-value {
-            color: #f97316;
-        }
-
-        .summary-card.medium .summary-value {
-            color: #eab308;
-        }
-
-        .summary-card.low .summary-value {
-            color: #3b82f6;
-        }
-
-        .loading {
+        
+        .loading-state {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
-            color: #94a3b8;
-            font-size: 14px;
+            color: #64748b;
+            height: 300px;
         }
-
+        
         .spinner {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #334155;
-            border-top-color: #4f46e5;
+            width: 24px;
+            height: 24px;
+            border: 3px solid #e2e8f0;
+            border-top-color: #6366f1;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
-
+        
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-
-        .error {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid #ef4444;
-            border-radius: 6px;
+        
+        .error-state {
+            background: #fee2e2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
             padding: 16px;
-            color: #fca5a5;
+            border-radius: 8px;
             font-size: 14px;
-            margin-bottom: 16px;
+            line-height: 1.6;
         }
-
-        .success {
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid #22c55e;
-            border-radius: 6px;
-            padding: 16px;
-            color: #86efac;
+        
+        .compliance-report {
             font-size: 14px;
-            margin-bottom: 16px;
-        }
-
-        .markdown-content {
-            font-size: 13px;
             line-height: 1.8;
-            color: #cbd5e1;
+            color: #1e293b;
         }
-
-        .markdown-content h2 {
+        
+        .compliance-report h3 {
             font-size: 16px;
             font-weight: 600;
-            margin: 16px 0 12px 0;
-            color: #e2e8f0;
+            color: #0f172a;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
         }
-
-        .markdown-content h3 {
-            font-size: 14px;
+        
+        .compliance-report h3:first-child {
+            margin-top: 0;
+        }
+        
+        .violation {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        
+        .violation.critical {
+            background: #fee2e2;
+            border-left-color: #ef4444;
+        }
+        
+        .violation.high {
+            background: #fecaca;
+            border-left-color: #f87171;
+        }
+        
+        .violation.medium {
+            background: #fef3c7;
+            border-left-color: #f59e0b;
+        }
+        
+        .violation.low {
+            background: #dcfce7;
+            border-left-color: #22c55e;
+        }
+        
+        .violation-title {
             font-weight: 600;
-            margin: 12px 0 8px 0;
-            color: #cbd5e1;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
         }
-
-        .markdown-content ul,
-        .markdown-content ol {
-            margin: 8px 0 8px 20px;
+        
+        .severity-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
         }
-
-        .markdown-content li {
-            margin-bottom: 6px;
+        
+        .severity-critical {
+            background: #ef4444;
+            color: white;
         }
-
-        .markdown-content p {
-            margin-bottom: 8px;
+        
+        .severity-high {
+            background: #f97316;
+            color: white;
         }
-
-        .hidden {
-            display: none;
+        
+        .severity-medium {
+            background: #f59e0b;
+            color: white;
         }
-
+        
+        .severity-low {
+            background: #22c55e;
+            color: white;
+        }
+        
+        .recommendation {
+            background: #e0f2fe;
+            border-left: 4px solid #0284c7;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        
+        .recommendation-title {
+            font-weight: 600;
+            color: #0c4a6e;
+            margin-bottom: 4px;
+        }
+        
+        .metric-box {
+            background: #f0f9ff;
+            border: 1px solid #bfdbfe;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        
         footer {
             text-align: center;
             padding: 20px;
+            color: white;
             font-size: 12px;
-            color: #64748b;
-            border-top: 1px solid #334155;
             margin-top: 40px;
         }
-
+        
         footer a {
-            color: #4f46e5;
+            color: #c7d2fe;
             text-decoration: none;
+            font-weight: 600;
         }
-
+        
         footer a:hover {
             text-decoration: underline;
         }
@@ -420,140 +322,62 @@
     <div class="container">
         <header>
             <h1>PSM Compliance Auditor</h1>
-            <div class="header-meta">
-                <div class="meta-item">
-                    <span class="meta-badge">Manufacturing & Industrial</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-badge">PSM Compliance Auditor</span>
-                </div>
-            </div>
+            <div class="subtitle">Process Safety Management Compliance Assessment</div>
+            <div class="industry-badge">Manufacturing & Industrial</div>
         </header>
+        
+        <div class="main-grid">
+            <div class="card input-section">
+                <h2>Shift Incident Log</h2>
+                <textarea id="incidentLog" placeholder="Paste your shift incident log here...">Date: 2024-01-15
+Shift: 7:00 AM - 3:00 PM
+Operator: John Smith
 
-        <div class="content">
-            <div class="card">
-                <h2>
-                    <span class="card-icon">📋</span>
-                    Shift Incident Log
-                </h2>
-                <textarea id="incidentLog" placeholder="Paste shift incident log here...">Date: 2024-01-15
-Time: 14:30 - 15:45
-Location: Unit 3 - Reactor Feed Area
+0745 - Equipment startup initiated. Temperature reading on reactor vessel abnormal (45°C above normal). Did not wait for supervisor approval before proceeding.
 
-Incident Summary:
-Operator noticed slight increase in reactor pressure (1.2 bar above setpoint) at 14:35. No immediate alarm was triggered. Operator manually adjusted valve V-312 without documenting the action in the control system. Maintenance personnel were not notified.
+0810 - Pressure relief valve making unusual noise. Operator noticed but did not report to maintenance. Continued operations.
 
-At 14:50, pressure returned to normal range. The operator noted it in a maintenance log but did not complete any incident report. No safety review meeting was conducted afterward.
+0845 - Near miss: chemical spill of approximately 2 liters. No PPE worn during cleanup. Spill not documented in incident log until end of shift.
 
-Equipment Status:
-- Pressure relief valve P-401 had not been tested in 18 months (last test: July 2022)
-- No calibration records available for pressure transmitter PT-305
-- Operator training records show no PSM hazard awareness training since 2021
+1030 - Control room alarm triggered for high pressure. Operator manually reset alarm instead of investigating root cause. No investigation logged.
 
-Environmental Conditions:
-No environmental releases detected. No injuries reported.
+1130 - Safety inspection was scheduled but postponed due to production deadline. No documentation of deferral or risk assessment.
 
-Actions Taken:
-Operator manually reset the pressure to normal. No formal investigation initiated.</textarea>
+1500 - Shift ends. No safety briefing provided to incoming shift regarding the events that occurred.</textarea>
                 <div class="button-group">
-                    <button id="analyzeBtn" onclick="analyzeIncident()">Analyze Compliance</button>
-                    <span class="hint">Try it →</span>
+                    <button onclick="analyzeCompliance()">Analyze Compliance</button>
+                    <button class="secondary" onclick="clearForm()">Clear</button>
+                    <div class="try-hint">↓ Try it →</div>
                 </div>
             </div>
-
-            <div class="card">
-                <h2>
-                    <span class="card-icon">⚙️</span>
-                    PSM Principles Reference
-                </h2>
-                <div style="font-size: 13px; line-height: 1.8; color: #cbd5e1;">
-                    <strong style="color: #e2e8f0;">Key PSM Elements Checked:</strong>
-                    <ul style="margin: 12px 0 0 20px; list-style: none;">
-                        <li>✓ Process Safety Information & Documentation</li>
-                        <li>✓ Hazard Analysis & Risk Assessment</li>
-                        <li>✓ Operating Procedures & Work Permits</li>
-                        <li>✓ Training & Competency Requirements</li>
-                        <li>✓ Equipment Maintenance & Inspection</li>
-                        <li>✓ Incident Investigation & Reporting</li>
-                        <li>✓ Change Management Procedures</li>
-                        <li>✓ Contractor Safety Management</li>
-                        <li>✓ Emergency Planning & Response</li>
-                        <li>✓ Compliance Audits</li>
-                    </ul>
-                    <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #334155; color: #94a3b8;">
-                        The analyzer compares your incident log against industry-standard Process Safety Management (PSM) principles and OSHA requirements to identify violations, assess severity, and recommend corrective actions.
-                    </p>
+            
+            <div class="card output-section">
+                <h2>Compliance Report</h2>
+                <div id="output">
+                    <div style="color: #64748b; font-size: 14px; margin-top: 20px;">
+                        Paste an incident log and click "Analyze Compliance" to generate a detailed PSM compliance assessment with violation severity levels and corrective actions.
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="card output-section hidden" id="outputSection">
-            <h2>
-                <span class="card-icon">📊</span>
-                Compliance Assessment Report
-            </h2>
-
-            <div id="loadingState" class="loading hidden">
-                <div class="spinner"></div>
-                <span>Analyzing incident against PSM principles...</span>
-            </div>
-
-            <div id="errorState" class="error hidden"></div>
-
-            <div id="reportContent"></div>
         </div>
     </div>
-
+    
     <footer>
         Powered by Bharat AI · connect <a href="mailto:atulmca@yahoo.com">atulmca@yahoo.com</a>
     </footer>
-
+    
     <script>
-        async function analyzeIncident() {
+        async function analyzeCompliance() {
             const incidentLog = document.getElementById('incidentLog').value.trim();
+            const outputDiv = document.getElementById('output');
             
             if (!incidentLog) {
-                showError('Please paste an incident log to analyze.');
+                outputDiv.innerHTML = '<div class="error-state">Please paste an incident log to analyze.</div>';
                 return;
             }
-
-            const outputSection = document.getElementById('outputSection');
-            const loadingState = document.getElementById('loadingState');
-            const errorState = document.getElementById('errorState');
-            const reportContent = document.getElementById('reportContent');
-
-            outputSection.classList.remove('hidden');
-            loadingState.classList.remove('hidden');
-            errorState.classList.add('hidden');
-            reportContent.innerHTML = '';
-
-            const systemPrompt = `You are an expert Process Safety Management (PSM) compliance auditor. Analyze the provided shift incident log against standard PSM principles (OSHA PSM or equivalent).
-
-Your analysis must identify:
-1. All violations or non-conformances with PSM principles
-2. Severity classification (CRITICAL, HIGH, MEDIUM, LOW)
-3. Specific PSM element affected
-4. Description of the violation
-5. Immediate corrective actions
-
-Format your response as follows:
-
-VIOLATIONS IDENTIFIED:
-[For each violation, start with "VIOLATION:" and include]:
-- Severity: [CRITICAL/HIGH/MEDIUM/LOW]
-- PSM Element: [e.g., Equipment Maintenance, Training, Incident Investigation, etc.]
-- Description: [specific violation]
-- Root Cause: [why this occurred]
-
-IMMEDIATE CORRECTIVE ACTIONS:
-[List numbered actions in priority order]
-1. [Action with timeline]
-2. [Action with timeline]
-3. [etc.]
-
-SUMMARY:
-[2-3 sentence executive summary of compliance status]`;
-
+            
+            outputDiv.innerHTML = '<div class="loading-state"><div class="spinner"></div><span>Analyzing compliance...</span></div>';
+            
             try {
                 const response = await fetch('/api/chat', {
                     method: 'POST',
@@ -561,187 +385,115 @@ SUMMARY:
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        model: 'claude-haiku-4-5-20251001',
                         messages: [
                             {
                                 role: 'user',
-                                content: `${systemPrompt}\n\nSHIFT INCIDENT LOG:\n${incidentLog}`
+                                content: `You are a PSM (Process Safety Management) compliance expert. Analyze the following shift incident log and provide a comprehensive compliance assessment.
+
+INCIDENT LOG:
+${incidentLog}
+
+Please provide:
+
+1. VIOLATIONS IDENTIFIED - List each violation with severity (CRITICAL/HIGH/MEDIUM/LOW) based on PSM principles:
+   - Chemical Process Safety
+   - Equipment Integrity
+   - Hazard Analysis
+   - Operating Procedures
+   - Training & Competency
+   - Incident Investigation
+   - Management of Change
+   - Emergency Response
+
+2. SEVERITY ANALYSIS - For each violation, explain why it poses a risk and its severity level.
+
+3. IMMEDIATE CORRECTIVE ACTIONS - Specific, actionable steps to address each critical and high-severity violation within 24-48 hours.
+
+4. COMPLIANCE SUMMARY - Overall compliance status and risk assessment.
+
+5. RECOMMENDED FOLLOW-UP - Within-week and within-month corrective measures.
+
+Format the response clearly with section headers (## Header) and use bullet points or numbered lists for violations and actions.`
                             }
                         ],
-                        max_tokens: 2000
+                        model: 'claude-haiku-4-5-20251001'
                     })
                 });
-
+                
                 if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.error || `API error: ${response.status}`);
+                    throw new Error(`API error: ${response.status}`);
                 }
-
+                
                 const data = await response.json();
-                const aiResponse = data.content[0].text;
-
-                loadingState.classList.add('hidden');
-                renderComplianceReport(aiResponse);
-
+                const reportText = data.content[0].text;
+                
+                outputDiv.innerHTML = '<div class="compliance-report">' + formatReport(reportText) + '</div>';
             } catch (error) {
-                loadingState.classList.add('hidden');
-                showError(`Analysis failed: ${error.message}`);
+                console.error('Error:', error);
+                outputDiv.innerHTML = `<div class="error-state">Error analyzing compliance: ${error.message}. Please try again.</div>`;
             }
         }
-
-        function renderComplianceReport(text) {
-            const reportContent = document.getElementById('reportContent');
-            const lines = text.split('\n');
+        
+        function formatReport(text) {
+            let html = text;
             
-            let violations = [];
-            let correctiveActions = [];
-            let summary = '';
-            let currentSection = '';
-            let currentViolation = null;
-            let inViolations = false;
-            let inActions = false;
-            let inSummary = false;
-
+            // Handle ## headers
+            html = html.replace(/## (.+?)(?=\n|$)/g, '<h3>$1</h3>');
+            
+            // Handle # headers
+            html = html.replace(/# (.+?)(?=\n|$)/g, '<h3>$1</h3>');
+            
+            // Split into lines and process
+            let lines = html.split('\n');
+            let formatted = [];
+            let inList = false;
+            
             for (let i = 0; i < lines.length; i++) {
-                const line = lines[i].trim();
-
-                if (line.includes('VIOLATIONS IDENTIFIED')) {
-                    inViolations = true;
-                    inActions = false;
-                    inSummary = false;
-                    continue;
-                }
-
-                if (line.includes('IMMEDIATE CORRECTIVE ACTIONS')) {
-                    inViolations = false;
-                    inActions = true;
-                    inSummary = false;
-                    if (currentViolation) {
-                        violations.push(currentViolation);
-                        currentViolation = null;
-                    }
-                    continue;
-                }
-
-                if (line.includes('SUMMARY:')) {
-                    inViolations = false;
-                    inActions = false;
-                    inSummary = true;
-                    continue;
-                }
-
-                if (line === '') continue;
-
-                if (inViolations) {
-                    if (line.startsWith('VIOLATION:') || line.startsWith('- Violation:')) {
-                        if (currentViolation) {
-                            violations.push(currentViolation);
-                        }
-                        currentViolation = {
-                            description: line.replace(/^(VIOLATION:|- Violation:)/, '').trim(),
-                            severity: 'MEDIUM',
-                            element: '',
-                            rootCause: ''
-                        };
-                    } else if (currentViolation) {
-                        if (line.startsWith('Severity:') || line.startsWith('- Severity:')) {
-                            const sev = line.replace(/^(- )?Severity:/, '').trim().toUpperCase();
-                            if (['CRITICAL', 'HIGH', 'MEDIUM', 'LOW'].includes(sev)) {
-                                currentViolation.severity = sev;
-                            }
-                        } else if (line.startsWith('PSM Element:') || line.startsWith('- PSM Element:')) {
-                            currentViolation.element = line.replace(/^(- )?PSM Element:/, '').trim();
-                        } else if (line.startsWith('Description:') || line.startsWith('- Description:')) {
-                            currentViolation.description = line.replace(/^(- )?Description:/, '').trim();
-                        } else if (line.startsWith('Root Cause:') || line.startsWith('- Root Cause:')) {
-                            currentViolation.rootCause = line.replace(/^(- )?Root Cause:/, '').trim();
-                        }
-                    }
-                }
-
-                if (inActions) {
-                    if (line.match(/^(\d+\.|[-*])\s/) && !line.includes(':')) {
-                        const action = line.replace(/^(\d+\.|[-*])\s+/, '').trim();
-                        if (action) {
-                            correctiveActions.push(action);
-                        }
-                    }
-                }
-
-                if (inSummary && line) {
-                    summary += (summary ? ' ' : '') + line;
-                }
-            }
-
-            if (currentViolation) {
-                violations.push(currentViolation);
-            }
-
-            const severityCount = {
-                CRITICAL: violations.filter(v => v.severity === 'CRITICAL').length,
-                HIGH: violations.filter(v => v.severity === 'HIGH').length,
-                MEDIUM: violations.filter(v => v.severity === 'MEDIUM').length,
-                LOW: violations.filter(v => v.severity === 'LOW').length
-            };
-
-            let html = '<div class="summary">';
-            html += `<div class="summary-card critical"><div class="summary-value">${severityCount.CRITICAL}</div><div class="summary-label">Critical</div></div>`;
-            html += `<div class="summary-card high"><div class="summary-value">${severityCount.HIGH}</div><div class="summary-label">High</div></div>`;
-            html += `<div class="summary-card medium"><div class="summary-value">${severityCount.MEDIUM}</div><div class="summary-label">Medium</div></div>`;
-            html += `<div class="summary-card low"><div class="summary-value">${severityCount.LOW}</div><div class="summary-label">Low</div></div>`;
-            html += '</div>';
-
-            if (summary) {
-                html += `<div class="success" style="border-color: #22c55e; background: rgba(34, 197, 94, 0.1); color: #86efac;"><strong>Summary:</strong> ${escapeHtml(summary)}</div>`;
-            }
-
-            if (violations.length > 0) {
-                html += '<h3 style="font-size: 16px; font-weight: 600; margin: 24px 0 16px 0; color: #e2e8f0;">Violations Identified</h3>';
-                html += '<div class="violations-container">';
+                let line = lines[i].trim();
                 
-                for (const v of violations) {
-                    const severity = v.severity || 'MEDIUM';
-                    html += `<div class="violation ${severity.toLowerCase()}">`;
-                    html += `<div class="severity-badge">${severity}</div>`;
-                    if (v.element) {
-                        html += `<h3>PSM Element: ${escapeHtml(v.element)}</h3>`;
+                if (!line) {
+                    if (inList) {
+                        formatted.push('');
+                        inList = false;
                     }
-                    if (v.description) {
-                        html += `<p><strong>Violation:</strong> ${escapeHtml(v.description)}</p>`;
-                    }
-                    if (v.rootCause) {
-                        html += `<p><strong>Root Cause:</strong> ${escapeHtml(v.rootCause)}</p>`;
-                    }
-                    html += '</div>';
+                    continue;
                 }
                 
-                html += '</div>';
-            }
-
-            if (correctiveActions.length > 0) {
-                html += '<div class="corrective-actions">';
-                html += '<h3>Immediate Corrective Actions (Priority Order)</h3>';
-                for (let i = 0; i < correctiveActions.length; i++) {
-                    html += `<div class="action-item"><strong>${i + 1}.</strong> ${escapeHtml(correctiveActions[i])}</div>`;
+                if (line.match(/^<h3>/)) {
+                    formatted.push(line);
+                    inList = false;
+                } else if (line.match(/^[-*•]\s+/) || line.match(/^\d+\.\s+/)) {
+                    inList = true;
+                    
+                    // Check if this is a violation entry
+                    if (line.match(/CRITICAL|HIGH|MEDIUM|LOW/i)) {
+                        const severityMatch = line.match(/(CRITICAL|HIGH|MEDIUM|LOW)/i);
+                        const severity = severityMatch ? severityMatch[1].toLowerCase() : 'medium';
+                        const cleanLine = line.replace(/^[-*•\d.]\s+/, '').replace(/\*\*/g, '');
+                        formatted.push(`<div class="violation ${severity}"><div class="violation-title"><span class="severity-badge severity-${severity}">${severity}</span> ${cleanLine.substring(0, 100)}${cleanLine.length > 100 ? '...' : ''}</div>${cleanLine.length > 100 ? cleanLine.substring(100) : ''}</div>`);
+                    } else if (line.match(/Recommended|Action|Corrective|Follow-up/i)) {
+                        const cleanLine = line.replace(/^[-*•\d.]\s+/, '').replace(/\*\*/g, '');
+                        formatted.push(`<div class="recommendation"><div class="recommendation-title">→ Action</div>${cleanLine}</div>`);
+                    } else {
+                        const cleanLine = line.replace(/^[-*•\d.]\s+/, '').replace(/\*\*/g, '');
+                        formatted.push(`<div style="margin: 8px 0; padding-left: 16px; border-left: 2px solid #e2e8f0;">• ${cleanLine}</div>`);
+                    }
+                } else {
+                    if (inList && line) {
+                        formatted.push(`<p style="margin: 12px 0;">${line.replace(/\*\*/g, '')}</p>`);
+                    } else if (line) {
+                        formatted.push(`<p style="margin: 12px 0;">${line.replace(/\*\*/g, '')}</p>`);
+                    }
+                    inList = false;
                 }
-                html += '</div>';
             }
-
-            document.getElementById('reportContent').innerHTML = html;
+            
+            return formatted.join('\n');
         }
-
-        function showError(message) {
-            const errorState = document.getElementById('errorState');
-            const outputSection = document.getElementById('outputSection');
-            outputSection.classList.remove('hidden');
-            errorState.classList.remove('hidden');
-            errorState.textContent = message;
-        }
-
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
+        
+        function clearForm() {
+            document.getElementById('incidentLog').value = '';
+            document.getElementById('output').innerHTML = '<div style="color: #64748b; font-size: 14px; margin-top: 20px;">Paste an incident log and click "Analyze Compliance" to generate a detailed PSM compliance assessment with violation severity levels and corrective actions.</div>';
         }
     </script>
 </body>
